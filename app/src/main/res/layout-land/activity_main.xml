@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.rekklesdroid.android.myfavouriteapplication.MainActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txt_word_you"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#004d10"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Text 1"/>
+
+        <TextView
+            android:id="@+id/txt_adverb_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#004d30"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_word_you"
+            tools:text="Text 2"/>
+
+        <TextView
+            android:id="@+id/txt_adverb_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#004d50"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_adverb_first"
+            tools:text="Text 3"/>
+
+        <TextView
+            android:id="@+id/txt_verb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#004d70"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_adverb_second"
+            tools:text="Text 4"/>
+
+        <TextView
+            android:id="@+id/txt_noun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#004d80"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_verb"
+            tools:text="Text 5"/>
+
+        <ImageButton
+            android:id="@+id/imgbtn_refresh"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_refresh"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imgbtn_send"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_noun"/>
+
+        <ImageButton
+            android:id="@+id/imgbtn_send"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgbtn_refresh"
+            app:layout_constraintTop_toBottomOf="@+id/txt_noun"/>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
