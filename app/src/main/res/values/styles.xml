@@ -21,8 +21,8 @@
     </style>
 
     <style name="ButtonStyle">
-        <item name="android:layout_width">120dp</item>
-        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_height">140dp</item>
         <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
