@@ -1,4 +1,4 @@
-package com.rekklesdroid.android.myfavouriteapplication.data;
+package com.rekklesdroid.android.myfavouriteapplication.data.entities;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -6,10 +6,10 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 
-@Entity(tableName = "quantity_adverbs",
+@Entity(tableName = "nouns",
         indices = {@Index(value = {"word"},
         unique = true)})
-public class AdverbQuantity {
+public class Noun extends Word{
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -17,7 +17,7 @@ public class AdverbQuantity {
     @ColumnInfo(name = "word")
     private String word;
 
-    public AdverbQuantity(String word) {
+    public Noun(String word) {
         this.word = word;
     }
 
@@ -41,8 +41,8 @@ public class AdverbQuantity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AdverbQuantity adverbQuanyity = (AdverbQuantity) o;
-        return word.equals(adverbQuanyity.word);
+        Noun noun = (Noun) o;
+        return word.equals(noun.word);
     }
 
     @Override
@@ -58,13 +58,13 @@ public class AdverbQuantity {
         return word;
     }
 
-    public static AdverbQuantity[] populateQuantityAdverbs() {
-        return new AdverbQuantity[]{
-                new AdverbQuantity("більш ніж"),
-                new AdverbQuantity("до хвилювання"),
-                new AdverbQuantity("до божевілля"),
-                new AdverbQuantity("несамовито"),
-                new AdverbQuantity("несказанно")
+    public static Noun[] populateNouns() {
+        return new Noun[]{
+                new Noun("під зірками"),
+                new Noun("коли смієшся"),
+                new Noun("їжачок"),
+                new Noun("коли ми вдома"),
+                new Noun("завжди")
         };
     }
 }

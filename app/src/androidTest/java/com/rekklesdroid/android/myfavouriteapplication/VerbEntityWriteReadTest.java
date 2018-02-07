@@ -5,7 +5,7 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.rekklesdroid.android.myfavouriteapplication.data.Verb;
+import com.rekklesdroid.android.myfavouriteapplication.data.entities.Verb;
 import com.rekklesdroid.android.myfavouriteapplication.data.VerbDao;
 import com.rekklesdroid.android.myfavouriteapplication.data.WordsDatabase;
 

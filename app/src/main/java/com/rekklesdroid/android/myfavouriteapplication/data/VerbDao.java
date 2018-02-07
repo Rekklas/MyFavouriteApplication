@@ -4,6 +4,8 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
+import com.rekklesdroid.android.myfavouriteapplication.data.entities.Verb;
+
 
 @Dao
 public interface VerbDao {
@@ -13,5 +15,6 @@ public interface VerbDao {
 
     @Query("SELECT * FROM verbs ORDER BY RANDOM() LIMIT 1")
     Verb getRandomVerb();
+
 
 }

@@ -1,4 +1,4 @@
-package com.rekklesdroid.android.myfavouriteapplication.data;
+package com.rekklesdroid.android.myfavouriteapplication.data.entities;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "quality_adverbs",
         indices = {@Index(value = {"word"},
         unique = true)})
-public class AdverbQuality {
+public class AdverbQuality extends Word{
 
     @PrimaryKey(autoGenerate = true)
     private int id;

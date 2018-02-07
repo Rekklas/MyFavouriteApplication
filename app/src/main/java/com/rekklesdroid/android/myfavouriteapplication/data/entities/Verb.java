@@ -1,4 +1,4 @@
-package com.rekklesdroid.android.myfavouriteapplication.data;
+package com.rekklesdroid.android.myfavouriteapplication.data.entities;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -6,10 +6,10 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 
-@Entity(tableName = "nouns",
+@Entity(tableName = "verbs",
         indices = {@Index(value = {"word"},
         unique = true)})
-public class Noun {
+public class Verb extends Word{
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -17,7 +17,7 @@ public class Noun {
     @ColumnInfo(name = "word")
     private String word;
 
-    public Noun(String word) {
+    public Verb(String word) {
         this.word = word;
     }
 
@@ -41,8 +41,8 @@ public class Noun {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Noun noun = (Noun) o;
-        return word.equals(noun.word);
+        Verb verb = (Verb) o;
+        return word.equals(verb.word);
     }
 
     @Override
@@ -58,13 +58,13 @@ public class Noun {
         return word;
     }
 
-    public static Noun[] populateNouns() {
-        return new Noun[]{
-                new Noun("під зірками"),
-                new Noun("коли смієшся"),
-                new Noun("їжачок"),
-                new Noun("коли ми вдома"),
-                new Noun("завжди")
+    public static Verb[] populateVerbs() {
+        return new Verb[]{
+                new Verb("заграєш"),
+                new Verb("пахнеш"),
+                new Verb("спокушаєш"),
+                new Verb("вражаєш"),
+                new Verb("випромінюєш щастя")
         };
     }
 }
