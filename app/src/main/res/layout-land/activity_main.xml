@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="?attr/colorPrimary"
     tools:context="com.rekklesdroid.android.myfavouriteapplication.MainActivity">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,20 +15,20 @@
         android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="?attr/colorPrimary"
         tools:context="com.rekklesdroid.android.myfavouriteapplication.MainActivity">
 
         <TextView
             android:id="@+id/txt_word_you"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorYellow"
+            android:background="?attr/colorText1Back"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/word_you"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorText"
             android:textSize="36sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         <TextView
             android:id="@+id/txt_adverb_quantity"
             style="@style/TextStyle"
-            android:background="@color/colorLightOrange"
+            android:background="?attr/colorText2Back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -50,7 +50,7 @@
         <TextView
             style="@style/TextStyle"
             android:id="@+id/txt_adverb_quality"
-            android:background="@color/colorOrange"
+            android:background="?attr/colorText3Back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -62,7 +62,7 @@
         <TextView
             style="@style/TextStyle"
             android:id="@+id/txt_verb"
-            android:background="@color/colorLightRed"
+            android:background="?attr/colorText4Back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
         <TextView
             style="@style/TextStyle"
             android:id="@+id/txt_noun"
-            android:background="@color/colorDarkRed"
+            android:background="?attr/colorText5Back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

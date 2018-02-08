@@ -18,21 +18,24 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Space that is used for creating StringBuilder object
+     * in {@link #shareCompliment} method
+     */
     private static final String BLANK_SPACE = " ";
 
     @BindView(R.id.txt_word_you)
-    TextView text1;
+    TextView textWordYou;
     @BindView(R.id.txt_adverb_quantity)
-    TextView text2;
+    TextView textQuantityAdverb;
     @BindView(R.id.txt_adverb_quality)
-    TextView text3;
+    TextView textQualityAdverb;
     @BindView(R.id.txt_verb)
-    TextView text4;
+    TextView textVerb;
     @BindView(R.id.txt_noun)
-    TextView text5;
+    TextView textNoun;
 
     WordsDatabase wordsDb;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,37 +44,55 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         wordsDb = WordsDatabase.getInstance(getApplicationContext());
+        refreshAll();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        refreshAll();
     }
 
-
+    /**
+     * This method invokes new AsyncTask for doing query to database,
+     * that retrieve word from database{@link RetrieveWordTask#doInBackground(View...)}
+     * and set this word to certain TextView object{@link RetrieveWordTask#onPostExecute(Word)}
+     *
+     * @param textView TextView object which was clicked on
+     */
     @OnClick({R.id.txt_adverb_quality, R.id.txt_adverb_quantity, R.id.txt_verb, R.id.txt_noun})
     public void wordChange(final TextView textView) {
+
         new RetrieveWordTask().execute(textView);
     }
 
+    /**
+     *  This method starts after refresh button was pressed
+     *  and it invokes {@link #wordChange(TextView)} method for every textView
+     *
+     */
     @OnClick(R.id.imgbtn_refresh)
     void refreshAll() {
-        wordChange(text2);
-        wordChange(text3);
-        wordChange(text4);
-        wordChange(text5);
+        wordChange(textQuantityAdverb);
+        wordChange(textQualityAdverb);
+        wordChange(textVerb);
+        wordChange(textNoun);
     }
 
+    /**
+     * Method starts after send button was pressed.
+     * It creates new message getting Text from all textViews and make
+     * implicit intent to other Apps with ACTION_SEND property
+     *
+     */
     @OnClick(R.id.imgbtn_send)
     void shareCompliment() {
 
         StringBuilder complimentMessage = new StringBuilder();
-        complimentMessage.append(text1.getText()).append(BLANK_SPACE)
-                .append(text2.getText()).append(BLANK_SPACE)
-                .append(text3.getText()).append(BLANK_SPACE)
-                .append(text4.getText()).append(BLANK_SPACE)
-                .append(text5.getText()).append("!");
+        complimentMessage.append(textWordYou.getText()).append(BLANK_SPACE)
+                .append(textQuantityAdverb.getText()).append(BLANK_SPACE)
+                .append(textQualityAdverb.getText()).append(BLANK_SPACE)
+                .append(textVerb.getText()).append(BLANK_SPACE)
+                .append(textNoun.getText()).append("!");
 
         // Create the text message with a string
         Intent sendIntent = new Intent();
@@ -86,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * AsyncTask class which performs
+     * retrieving data in background thread from database
+     */
     @SuppressLint("StaticFieldLeak")
     private class RetrieveWordTask extends AsyncTask<View, Void, Word> {
 

@@ -1,17 +1,40 @@
 <resources>
 
     <!-- Base application theme. -->
+    <!-- Fire theme theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimaryFire</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkFire</item>
+        <item name="colorAccent">@color/colorAccentFire</item>
+        <item name="colorText">@android:color/white</item>
+        <item name="colorText1Back">@color/colorYellow</item>
+        <item name="colorText2Back">@color/colorLightOrange</item>
+        <item name="colorText3Back">@color/colorOrange</item>
+        <item name="colorText4Back">@color/colorLightRed</item>
+        <item name="colorText5Back">@color/colorDarkRed</item>
+
+    </style>
+
+    <!-- Fire theme theme. -->
+    <style name="AppThemeWater" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryWater</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkWater</item>
+        <item name="colorAccent">@color/colorAccentWater</item>
+        <item name="colorText">@android:color/white</item>
+        <item name="colorText1Back">@color/colorLightBlue</item>
+        <item name="colorText2Back">@color/colorBlue</item>
+        <item name="colorText3Back">@color/colorDarkBlue</item>
+        <item name="colorText4Back">@color/colorIndigo</item>
+        <item name="colorText5Back">@color/colorDarkIndigo</item>
+
     </style>
 
     <style name="TextStyle" parent="@android:style/TextAppearance.Medium">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">?attr/colorText</item>
         <item name= "android:paddingBottom">18dp</item>
         <item name= "android:paddingTop">18dp</item>
         <item name= "android:gravity">center</item>
@@ -23,7 +46,7 @@
     <style name="ButtonStyle">
         <item name="android:layout_width">140dp</item>
         <item name="android:layout_height">140dp</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:background">?attr/colorPrimaryDark</item>
     </style>
 
 </resources>
