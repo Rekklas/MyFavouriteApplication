@@ -30,7 +30,6 @@ public class SettingsActivity extends AppCompatActivity {
         if (id == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
         }
-
         return super.onOptionsItemSelected(item);
     }
 

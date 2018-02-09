@@ -3,12 +3,10 @@ package com.rekklesdroid.android.myfavouriteapplication;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,15 +22,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
      * Space that is used for creating StringBuilder object
      * in {@link #shareCompliment} method
      */
     private static final String BLANK_SPACE = " ";
+
+    private static final String STATE_QUANTITY_ADVERB = "quantity_adverb";
+    private static final String STATE_QUALITY_ADVERB = "quality_adverb";
+    private static final String STATE_VERB = "verb";
+    private static final String STATE_NOUN = "noun";
 
     @BindView(R.id.txt_word_you)
     TextView textWordYou;
@@ -62,7 +63,14 @@ public class MainActivity extends AppCompatActivity {
 
         wordsDb = WordsDatabase.getInstance(getApplicationContext());
 
-        refreshAll();
+        if (savedInstanceState != null) {
+            textQuantityAdverb.setText(savedInstanceState.getString(STATE_QUANTITY_ADVERB));
+            textQualityAdverb.setText(savedInstanceState.getString(STATE_QUALITY_ADVERB));
+            textVerb.setText(savedInstanceState.getString(STATE_VERB));
+            textNoun.setText(savedInstanceState.getString(STATE_NOUN));
+        } else{
+            refreshAll();
+        }
     }
 
     private void setupSharedPreferences() {
@@ -70,11 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
         String theme = sharedPreferences.getString(getResources().getString(R.string.pref_change_theme_key),
                 getResources().getString(R.string.pref_default_theme_value));
-        if (theme.equals(getResources().getString(R.string.pref_fire_theme_value))){
+        if (theme.equals(getResources().getString(R.string.pref_fire_theme_value))) {
             setTheme(R.style.AppThemeFire);
-        } else if (theme.equals(getResources().getString(R.string.pref_water_theme_value))){
+        } else if (theme.equals(getResources().getString(R.string.pref_water_theme_value))) {
             setTheme(R.style.AppThemeWater);
         }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     private void setupDrawables() {
@@ -82,18 +91,24 @@ public class MainActivity extends AppCompatActivity {
 
         String theme = sharedPreferences.getString(getResources().getString(R.string.pref_change_theme_key),
                 getResources().getString(R.string.pref_default_theme_value));
-        if (theme.equals(getResources().getString(R.string.pref_fire_theme_value))){
+        if (theme.equals(getResources().getString(R.string.pref_fire_theme_value))) {
             imgBtnRefresh.setImageResource(R.drawable.ic_refresh);
             imgBtnSend.setImageResource(R.drawable.ic_send);
-        } else if (theme.equals(getResources().getString(R.string.pref_water_theme_value))){
+        } else if (theme.equals(getResources().getString(R.string.pref_water_theme_value))) {
             imgBtnRefresh.setImageResource(R.drawable.ic_refresh_blue);
             imgBtnSend.setImageResource(R.drawable.ic_send_blue);
         }
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putString(STATE_QUANTITY_ADVERB, textQuantityAdverb.getText().toString());
+        outState.putString(STATE_QUALITY_ADVERB, textQualityAdverb.getText().toString());
+        outState.putString(STATE_VERB, textVerb.getText().toString());
+        outState.putString(STATE_NOUN, textNoun.getText().toString());
+
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -109,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
             startActivity(startSettingsActivity);
-            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -168,6 +182,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        recreate();
+    }
+
     /**
      * AsyncTask class which performs
      * retrieving data in background thread from database
@@ -181,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
         protected Word doInBackground(View... views) {
             Word word = null;
             for (View view : views) {
-                Log.d(TAG, "doInBackground: " + view.getId());
                 switch (view.getId()) {
                     case R.id.txt_adverb_quantity:
                         word = wordsDb.adverbQuantityDao().getRandomQuantityAdverb();
@@ -218,8 +243,7 @@ public class MainActivity extends AppCompatActivity {
                         view.setText(getResources().getString(R.string.default_noun));
                         break;
                 }
-            }
-            else
+            } else
                 view.setText(word.getWord());
         }
     }

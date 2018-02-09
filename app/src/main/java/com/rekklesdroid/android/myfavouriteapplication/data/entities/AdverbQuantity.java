@@ -64,7 +64,19 @@ public class AdverbQuantity extends Word{
                 new AdverbQuantity("до хвилювання"),
                 new AdverbQuantity("до божевілля"),
                 new AdverbQuantity("несамовито"),
-                new AdverbQuantity("несказанно")
+                new AdverbQuantity("як ніколи"),
+                new AdverbQuantity("неймовірно"),
+                new AdverbQuantity("до неможливості"),
+                new AdverbQuantity("просто"),
+                new AdverbQuantity("феєрично"),
+                new AdverbQuantity("несказанно"),
+                new AdverbQuantity("дивовижно"),
+                new AdverbQuantity("супер"),
+                new AdverbQuantity("дуже"),
+                new AdverbQuantity("шалено"),
+                new AdverbQuantity("очманіло"),
+                new AdverbQuantity("божественно"),
+                new AdverbQuantity("приголомшливо")
         };
     }
 }
