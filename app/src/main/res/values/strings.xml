@@ -1,4 +1,25 @@
 <resources>
+    <!-- MainActivity strings -->
     <string name="app_name">Lovely Words</string>
     <string name="word_you">Ти</string>
+    <string name="settings">Налаштування</string>
+
+    <!-- Default words for compliment generator -->
+    <string name="default_quantity_adverb">надзвичайно</string>
+    <string name="default_quality_adverb">чарівно</string>
+    <string name="default_verb">спиш</string>
+    <string name="default_noun">в моїх обіймах</string>
+
+    <!-- Preferences strings -->
+    <string name="pref_change_theme_label">Змінити тему</string>
+    <string name="pref_default_theme_value">fire_theme</string>
+    <string name="pref_change_theme_key" translatable="false">app_theme</string>
+    <!-- Labels for themes -->
+    <string name="pref_fire_theme_label">Пристрасть</string>
+    <string name="pref_water_theme_label">Спокій</string>
+    <!-- Values in SharedPreferences for themes -->
+    <string name="pref_fire_theme_value" translatable="false">fire_theme</string>
+    <string name="pref_water_theme_value" translatable="false">water_theme</string>
+
+
 </resources>

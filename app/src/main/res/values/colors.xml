@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimaryFire">#501009</color>
     <color name="colorPrimaryDarkFire">#480c00</color>
-    <color name="colorAccentFire">#ffff18</color>
+    <color name="colorAccentFire">#ff1824</color>
     <color name="colorYellow">#ffd70d</color>
     <color name="colorLightOrange">#ff8000</color>
     <color name="colorOrange">#ff5a00</color>

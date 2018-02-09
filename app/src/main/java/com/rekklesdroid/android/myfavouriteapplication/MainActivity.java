@@ -2,13 +2,21 @@ package com.rekklesdroid.android.myfavouriteapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.rekklesdroid.android.myfavouriteapplication.data.WordsDatabase;
+import com.rekklesdroid.android.myfavouriteapplication.data.entities.AdverbQuality;
 import com.rekklesdroid.android.myfavouriteapplication.data.entities.Word;
 
 
@@ -17,6 +25,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     /**
      * Space that is used for creating StringBuilder object
@@ -35,21 +45,74 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.txt_noun)
     TextView textNoun;
 
+    @BindView(R.id.imgbtn_refresh)
+    ImageButton imgBtnRefresh;
+    @BindView(R.id.imgbtn_send)
+    ImageButton imgBtnSend;
+
     WordsDatabase wordsDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setupSharedPreferences();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        setupDrawables();
 
         wordsDb = WordsDatabase.getInstance(getApplicationContext());
+
         refreshAll();
     }
 
+    private void setupSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String theme = sharedPreferences.getString(getResources().getString(R.string.pref_change_theme_key),
+                getResources().getString(R.string.pref_default_theme_value));
+        if (theme.equals(getResources().getString(R.string.pref_fire_theme_value))){
+            setTheme(R.style.AppThemeFire);
+        } else if (theme.equals(getResources().getString(R.string.pref_water_theme_value))){
+            setTheme(R.style.AppThemeWater);
+        }
+    }
+
+    private void setupDrawables() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String theme = sharedPreferences.getString(getResources().getString(R.string.pref_change_theme_key),
+                getResources().getString(R.string.pref_default_theme_value));
+        if (theme.equals(getResources().getString(R.string.pref_fire_theme_value))){
+            imgBtnRefresh.setImageResource(R.drawable.ic_refresh);
+            imgBtnSend.setImageResource(R.drawable.ic_send);
+        } else if (theme.equals(getResources().getString(R.string.pref_water_theme_value))){
+            imgBtnRefresh.setImageResource(R.drawable.ic_refresh_blue);
+            imgBtnSend.setImageResource(R.drawable.ic_send_blue);
+        }
+    }
+
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.app_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
+            startActivity(startSettingsActivity);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -66,9 +129,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *  This method starts after refresh button was pressed
-     *  and it invokes {@link #wordChange(TextView)} method for every textView
-     *
+     * This method starts after refresh button was pressed
+     * and it invokes {@link #wordChange(TextView)} method for every textView
      */
     @OnClick(R.id.imgbtn_refresh)
     void refreshAll() {
@@ -82,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
      * Method starts after send button was pressed.
      * It creates new message getting Text from all textViews and make
      * implicit intent to other Apps with ACTION_SEND property
-     *
      */
     @OnClick(R.id.imgbtn_send)
     void shareCompliment() {
@@ -120,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         protected Word doInBackground(View... views) {
             Word word = null;
             for (View view : views) {
+                Log.d(TAG, "doInBackground: " + view.getId());
                 switch (view.getId()) {
                     case R.id.txt_adverb_quantity:
                         word = wordsDb.adverbQuantityDao().getRandomQuantityAdverb();
@@ -141,7 +203,24 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Word word) {
-            view.setText(word.getWord());
+            if (word == null) {
+                switch (view.getId()) {
+                    case R.id.txt_adverb_quantity:
+                        view.setText(getResources().getString(R.string.default_quantity_adverb));
+                        break;
+                    case R.id.txt_adverb_quality:
+                        view.setText(getResources().getString(R.string.default_quality_adverb));
+                        break;
+                    case R.id.txt_verb:
+                        view.setText(getResources().getString(R.string.default_verb));
+                        break;
+                    case R.id.txt_noun:
+                        view.setText(getResources().getString(R.string.default_noun));
+                        break;
+                }
+            }
+            else
+                view.setText(word.getWord());
         }
     }
 }

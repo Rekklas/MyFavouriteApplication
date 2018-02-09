@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <!-- Fire theme theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppThemeFire" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimaryFire</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkFire</item>
@@ -13,10 +13,11 @@
         <item name="colorText3Back">@color/colorOrange</item>
         <item name="colorText4Back">@color/colorLightRed</item>
         <item name="colorText5Back">@color/colorDarkRed</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 
     </style>
 
-    <!-- Fire theme theme. -->
+    <!-- Water theme theme. -->
     <style name="AppThemeWater" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimaryWater</item>
@@ -28,6 +29,7 @@
         <item name="colorText3Back">@color/colorDarkBlue</item>
         <item name="colorText4Back">@color/colorIndigo</item>
         <item name="colorText5Back">@color/colorDarkIndigo</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 
     </style>
 
