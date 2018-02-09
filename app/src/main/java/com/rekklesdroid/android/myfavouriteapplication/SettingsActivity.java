@@ -1,5 +1,7 @@
 package com.rekklesdroid.android.myfavouriteapplication;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setupSharedPreferences();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         ActionBar actionBar = this.getSupportActionBar();
@@ -29,5 +32,17 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setupSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String theme = sharedPreferences.getString(getResources().getString(R.string.pref_change_theme_key),
+                getResources().getString(R.string.pref_default_theme_value));
+        if (theme.equals(getResources().getString(R.string.pref_fire_theme_value))){
+            setTheme(R.style.AppThemeFire);
+        } else if (theme.equals(getResources().getString(R.string.pref_water_theme_value))){
+            setTheme(R.style.AppThemeWater);
+        }
     }
 }

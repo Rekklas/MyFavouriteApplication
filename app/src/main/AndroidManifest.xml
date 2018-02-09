@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppThemeFire">
+        android:theme="@style/AppThemeWater">
         <activity android:name=".MainActivity"
             android:launchMode="singleTop">
             <intent-filter>

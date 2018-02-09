@@ -3,6 +3,7 @@ package com.rekklesdroid.android.myfavouriteapplication;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.rekklesdroid.android.myfavouriteapplication.data.WordsDatabase;
-import com.rekklesdroid.android.myfavouriteapplication.data.entities.AdverbQuality;
 import com.rekklesdroid.android.myfavouriteapplication.data.entities.Word;
 
 
