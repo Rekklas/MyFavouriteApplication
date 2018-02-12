@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
      * in {@link #shareCompliment} method
      */
     private static final String BLANK_SPACE = " ";
-
+    /**
+     * Constants which are used by onSaveInstanceState method
+     * {@link #onSaveInstanceState(Bundle)}
+     */
     private static final String STATE_QUANTITY_ADVERB = "quantity_adverb";
     private static final String STATE_QUALITY_ADVERB = "quality_adverb";
     private static final String STATE_VERB = "verb";
@@ -73,6 +76,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         }
     }
 
+    /**
+     * This method setup proper Application's theme according
+     * to shared preferences
+     */
     private void setupSharedPreferences() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -86,6 +93,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
+    /**
+     * This method is invoked after activity was created and setup
+     * correct drawables for Application's theme
+     */
     private void setupDrawables() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -189,8 +200,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
 
+    /**
+     * Method taht recreates this activity
+     *
+     * @param sharedPreferences sharedPreferences' Object
+     * @param key "key" of preference that was changed
+     */
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         recreate();
     }
 

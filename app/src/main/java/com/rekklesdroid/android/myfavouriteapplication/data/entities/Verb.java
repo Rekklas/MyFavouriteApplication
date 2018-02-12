@@ -5,7 +5,9 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-
+/**
+ * Class that represents entity of verb
+ */
 @Entity(tableName = "verbs",
         indices = {@Index(value = {"word"},
         unique = true)})
@@ -58,6 +60,11 @@ public class Verb extends Word{
         return word;
     }
 
+    /**
+     * Method is used to populate database with verbs
+     *
+     * @return an array of verbs
+     */
     public static Verb[] populateVerbs() {
         return new Verb[]{
                 new Verb("заграєш"),

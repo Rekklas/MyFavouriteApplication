@@ -5,7 +5,9 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-
+/**
+ * Class that represents entity of quality adverb
+ */
 @Entity(tableName = "quality_adverbs",
         indices = {@Index(value = {"word"},
         unique = true)})
@@ -58,6 +60,11 @@ public class AdverbQuality extends Word{
         return word;
     }
 
+    /**
+     * Method is used to populate database with quality adverbs
+     *
+     * @return an array of quality adverbs
+     */
     public static AdverbQuality[] populateQualityAdverbs() {
         return new AdverbQuality[]{
                 new AdverbQuality("прекрасно"),

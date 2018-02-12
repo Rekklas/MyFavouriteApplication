@@ -5,7 +5,9 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-
+/**
+ * Class that represents entity of noun
+ */
 @Entity(tableName = "nouns",
         indices = {@Index(value = {"word"},
         unique = true)})
@@ -58,6 +60,11 @@ public class Noun extends Word{
         return word;
     }
 
+    /**
+     * Method is used to populate database with nouns
+     *
+     * @return an array of nouns
+     */
     public static Noun[] populateNouns() {
         return new Noun[]{
                 new Noun("совушка"),

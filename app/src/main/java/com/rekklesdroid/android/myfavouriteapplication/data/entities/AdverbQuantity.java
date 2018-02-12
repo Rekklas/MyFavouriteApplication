@@ -5,7 +5,9 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-
+/**
+ * Class that represents entity of quantity adverb
+ */
 @Entity(tableName = "quantity_adverbs",
         indices = {@Index(value = {"word"},
         unique = true)})
@@ -58,6 +60,11 @@ public class AdverbQuantity extends Word{
         return word;
     }
 
+    /**
+     * Method is used to populate database with quantity adverbs
+     *
+     * @return an array of quantity adverbs
+     */
     public static AdverbQuantity[] populateQuantityAdverbs() {
         return new AdverbQuantity[]{
                 new AdverbQuantity("більш ніж"),
